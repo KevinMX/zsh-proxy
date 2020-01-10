@@ -9,6 +9,7 @@
 # -------------------------------------------------
 # A proxy plugin for zsh
 # Sukka (https://skk.moe)
+# Removed apt related lines for Arch Linux.
 
 __read_proxy_config() {
     __ZSHPROXY_STATUS=$(cat "${HOME}/.zsh-proxy/status")
@@ -81,16 +82,17 @@ __config_proxy() {
 # ==================================================
 
 # Proxy for APT
+# Removed for Arch Linux, since pacman (which uses curl by default and reads all_proxy environment variable) doesn't need this.
 
-__enable_proxy_apt() {
-    sudo touch /etc/apt/apt.conf.d/proxy.conf
-    echo -e "Acquire::http::Proxy \"${__ZSHPROXY_HTTP}\";" | sudo tee -a /etc/apt/apt.conf.d/proxy.conf >/dev/null
-    echo -e "Acquire::https::Proxy \"${__ZSHPROXY_HTTP}\";" | sudo tee -a /etc/apt/apt.conf.d/proxy.conf >/dev/null
-}
+# __enable_proxy_apt() {
+#    sudo touch /etc/apt/apt.conf.d/proxy.conf
+#    echo -e "Acquire::http::Proxy \"${__ZSHPROXY_HTTP}\";" | sudo tee -a /etc/apt/apt.conf.d/proxy.conf >/dev/null
+#    echo -e "Acquire::https::Proxy \"${__ZSHPROXY_HTTP}\";" | sudo tee -a /etc/apt/apt.conf.d/proxy.conf >/dev/null
+# }
 
-__disable_proxy_apt() {
-    sudo rm -rf /etc/apt/apt.conf.d/proxy.conf
-}
+# __disable_proxy_apt() {
+#    sudo rm -rf /etc/apt/apt.conf.d/proxy.conf
+# }
 
 # Proxy for pip
 # pip can read http_proxy & https_proxy
@@ -178,7 +180,7 @@ __enable_proxy() {
         __disable_proxy_all
         __disable_proxy_git
         __disable_proxy_npm
-        __disable_proxy_apt
+#       __disable_proxy_apt
         echo "Done!"
         echo "----------------------------------------"
         echo "Enable proxy for:"
@@ -188,8 +190,8 @@ __enable_proxy() {
         __enable_proxy_git
         echo "- npm & yarn"
         __enable_proxy_npm
-        echo "- apt"
-        __enable_proxy_apt
+#       echo "- apt"
+#       __enable_proxy_apt
         echo "Done!"
     fi
 }
@@ -198,7 +200,7 @@ __disable_proxy() {
     __disable_proxy_all
     __disable_proxy_git
     __disable_proxy_npm
-    __disable_proxy_apt
+#   __disable_proxy_apt
 }
 
 __auto_proxy() {
