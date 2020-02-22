@@ -122,7 +122,6 @@ __config_proxy() {
 #		sudo rm -rf /etc/apt/apt.conf.d/proxy.conf
 #	fi
 #}
->>>>>>> upstream/master
 
 # Proxy for pip
 # pip can read -r http_proxy & https_proxy
