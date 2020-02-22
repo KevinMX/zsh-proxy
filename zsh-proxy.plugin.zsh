@@ -99,7 +99,6 @@ __config_proxy() {
 # Proxy for APT
 # Removed for Arch Linux, since pacman (which uses curl by default and reads all_proxy environment variable) doesn't need this.
 
-<<<<<<< HEAD
 # __enable_proxy_apt() {
 #    sudo touch /etc/apt/apt.conf.d/proxy.conf
 #    echo -e "Acquire::http::Proxy \"${__ZSHPROXY_HTTP}\";" | sudo tee -a /etc/apt/apt.conf.d/proxy.conf >/dev/null
@@ -109,7 +108,6 @@ __config_proxy() {
 # __disable_proxy_apt() {
 #    sudo rm -rf /etc/apt/apt.conf.d/proxy.conf
 # }
-=======
 # __enable_proxy_apt() {
 #	if [ -d "/etc/apt/apt.conf.d" ]; then
 #		sudo touch /etc/apt/apt.conf.d/proxy.conf
@@ -209,10 +207,7 @@ __disable_proxy_npm() {
 	fi
 }
 
-# ==================================================
-
 __enable_proxy() {
-<<<<<<< HEAD
     if [ ! -n "${__ZSHPROXY_STATUS}" ] || [ ! -n "${__ZSHPROXY_SOCKS5}" ] || [ ! -n "${__ZSHPROXY_HTTP}" ]; then
         echo "========================================"
         echo "zsh-proxy can not read configuration."
@@ -265,7 +260,7 @@ __disable_proxy() {
 		__disable_proxy_all
 		__disable_proxy_git
 		__disable_proxy_npm
-		__disable_proxy_apt
+#		__disable_proxy_apt
 		echo "Done!"
 		echo "----------------------------------------"
 		echo "Enable proxy for:"
@@ -276,7 +271,7 @@ __disable_proxy() {
 		# npm & yarn"
 		__enable_proxy_npm
 		# apt"
-		__enable_proxy_apt
+#		__enable_proxy_apt
 		echo "Done!"
 	fi
 }
@@ -285,8 +280,7 @@ __disable_proxy() {
 	__disable_proxy_all
 	__disable_proxy_git
 	__disable_proxy_npm
-	__disable_proxy_apt
->>>>>>> upstream/master
+#	__disable_proxy_apt
 }
 
 __auto_proxy() {
@@ -294,8 +288,6 @@ __auto_proxy() {
 		__enable_proxy_all
 	fi
 }
-
-# ==================================================
 
 init_proxy() {
 	mkdir -p "$HOME/.zsh-proxy"
